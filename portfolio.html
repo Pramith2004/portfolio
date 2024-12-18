@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Code Portfolio</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        header {
+    background-color: #333;
+    color: #fff;
+    padding: 1rem 0;
+  }
+        nav ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+  }
+  
+  nav ul li {
+    margin: 0 1rem;
+  }
+  
+  nav ul li a {
+    color: white;
+    text-decoration: none;
+  }
+        .container {
+            padding: 20px;
+        }
+        .code-block {
+            background-color: #2d2d2d;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+            overflow-x: auto;
+        }
+        .code-block pre {
+            margin: 0;
+        }
+        main {
+    padding: 2rem;
+    text-align: center;
+  }
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #333;
+            color: white;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header> 
+               <main><h1>My Code Portfolio</h1>
+        <p>Showcasing the projects and scripts I've created</p></main>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="resume.html">Resume</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="contact.html">Contact</a></li>
+              </ul>
+        </nav>
+
+    </header>
+    <div class="container">
+        <h2>Project 1: Dijistra Algorithm</h2>
+        <div class="code-block">
+            <pre><code>
+                #include &lt;stdio.h&gt;
+                #define inf 9999
+                int visit[100], count, mindistance, nextnode, i, j,distance[100],n,u,a[100][100];
+                void Dijkstra() {
+                  for (i = 0; i &lt; n; i++) {
+                    distance[i] = a[u][i];
+                    visit[i] = 0;
+                  }
+                  distance[u] = 0;
+                  visit[u] = 1;
+                  count = 1;
+                  while (count &lt; n - 1) {
+                    mindistance = inf;
+                    for (i = 0; i &lt; n; i++)
+                      if (distance[i] &lt; mindistance && !visit[i]) 
+                      {
+                        mindistance = distance[i];
+                        nextnode = i;
+                      }
+                    visit[nextnode] = 1;
+                    for (i = 0; i &lt; n; i++)
+                      if (!visit[i])
+                        if (mindistance + a[nextnode][i] &lt; distance[i]) {
+                          distance[i] = mindistance + a[nextnode][i];
+                        }
+                    count++;
+                  }
+                  for (i = 0; i &lt; n; i++)
+                    if (i != u) {
+                      printf("\nDistance from source to %d: %d", i+1, distance[i]);
+                    }
+                }
+                void main() {
+                  printf("Enter the number of vertices:");
+                  scanf("%d",&n);
+                  printf("Enter the matrix:\n");
+                  for(i=0;i&lt;n;i++)
+                    {
+                        for(j=0;j&lt;n;j++)
+                        {
+                        scanf("%d",&a[i][j]);
+                        if (a[i][j] == 0)
+                         a[i][j] = inf;
+                        }
+                    }
+                printf("enter the source:");
+                scanf("%d",&u);
+                --u;
+                Dijkstra();
+                }
+            </code></pre>
+        </div>
+
+        <h2>Project 2: Nqueen program</h2>
+        <div class="code-block">
+            <pre><code>
+                #include&lt;stdio.h&gt;
+                #include&lt;stdlib.h&gt;
+                int a[30],count=0,n,i,j,k=1;
+                int place(int pos)
+                {
+                for(i=1;i&lt;pos;i++)
+                {
+                    if((a[i]==a[pos])||((abs(a[i]-a[pos])==abs(i-pos))))
+                    return 0;
+                }
+                return 1;
+                }
+                
+                void print_sol()
+                {
+                count++;
+                printf("\n\nSolution #%d:\n",count);
+                for(i=1;i&lt;=n;i++)
+                {
+                for(j=1;j&lt;=n;j++)
+                {
+                if(a[i]==j)
+                printf("Q\t");
+                else
+                printf("*\t");
+                }
+                printf("\n");
+                }
+                }
+                
+                
+                void queen()
+                {
+                a[k]=0;
+                while(k!=0)
+                {
+                a[k]=a[k]+1;
+                while((a[k]&lt;=n)&&!place(k))
+                a[k]++;
+                if(a[k]&lt;=n)
+                {
+                if(k==n)
+                print_sol();
+                else
+                {
+                k++;
+                a[k]=0;
+                }
+                }
+                else
+                k--;
+                }
+                }
+                
+                void main()
+                {
+                printf("Enter the number of Queens\n");
+                scanf("%d",&n);
+                queen();
+                printf("\nTotal solutions=%d",count);
+                }
+            </code></pre>
+        </div>
+    </div>
+    <footer>
+        &copy; 2024 Pramith. All rights reserved.
+    </footer>
+</body>
+</html>
